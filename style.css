@@ -1,0 +1,367 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+    user-select: none;
+    -moz-user-select: none;
+
+}
+
+:root{
+    --background: #2d3250;
+    --sec-background: #676f9d;
+    --ter-background: #424769;
+    --her-background: #52577271;
+    --font-color: #ffffff;
+    --font-sec-color: #f3f3f3;
+    --foreground: #f18532;
+    --foreground-hover: #f16f0b;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background);
+}
+
+.game-window-container{
+    min-width: 400px;
+    min-height: 500px;
+}
+
+.game-home{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: lightcyan;
+    padding: 18px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.356);
+    box-sizing: border-box;
+    display: none;
+}
+
+.game-name{
+    width: 100%;
+    height: 150px;
+    flex-direction: column;
+}
+
+.game-name span{
+    font-size: 48px;
+    font-weight: 900;
+    color: gray;
+    line-height: 48px;
+}
+
+.game-btn{
+    width: 120px;
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: darkred;
+    color: whitesmoke;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.game-btn:hover{
+    transition: background-color 1s;
+    background-color: #700101;
+}
+
+/* START MENU */
+
+.start-menu{
+    position: relative;
+    width: 350px;
+    height: 420px;
+    border-radius: 12px;
+    background-color: rgb(255, 241, 241);
+    padding: 24px;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    display: none;
+}
+
+.player-form-container{
+    width: 100%;
+    min-height: 170px;
+    border: 1px solid #cecece;
+    border-radius: 12px;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.bottom-wrapper{
+    width: 100%;
+    height: 180px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.matrix-form-container{
+    width: 100%;
+    min-height: 110px;
+    border: 1px solid #cecece;
+    border-radius: 12px;
+    flex-direction: column;
+    overflow: hidden;
+    /* justify-content: space-between; */
+}
+
+.menu-form-header{
+    width: 100%;
+    height: 50px;
+    padding-left: 18px;
+    padding-bottom: 8px;
+    justify-content: flex-start;
+    align-items: flex-end;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #4d4d4d;
+    /* background-color: #676f9d; */
+    box-sizing: border-box;
+}
+
+.player-form{
+    width: 100%;
+    height: 60px;
+    justify-content: space-evenly;
+}
+
+.avatar-container{
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #cecece;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.avatar-container:hover{
+    transition: border .1s;
+    border: 2px solid coral;
+}
+
+.player-name{
+    width: 200px;
+    height: 40px;
+    outline: none;
+    border: 1px solid #cecece;
+    border-radius: 4px;
+    overflow: hidden;
+    padding-left: 12px;
+    background-color: transparent;
+    color: gray;
+    font-size: 18px;
+    font-weight: 500;
+    /* box-sizing: border-box; */
+}
+
+.player-name:focus{
+    transition: border .1s;
+    border: 2px solid coral;
+}
+
+.matrix-form{
+    width: 100%;
+    height: 60px;
+    /* background-color: #f18532; */
+    justify-content: space-evenly;}
+
+.matrix-form input{
+    display: none;
+}
+
+.matrix-form input:checked + .matrix-container{
+    transition: all .2s;
+    transition: border .1s;
+    background-color: rgb(243, 217, 217);
+    border: 2px solid coral;
+}
+
+.matrix-form .matrix-container{
+    width: 80px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #cecece;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.matrix-form .matrix-container:hover{
+    transition: all .2s;
+    transition: border .1s;
+    background-color: rgb(243, 217, 217);
+    border: 2px solid coral;
+}
+
+.matrix-form .matrix-container .de-matrix{
+    font-size: 20px;
+    font-weight: 600;
+    color: #4d4d4d;
+}
+
+/* HANDLLE GAME CONSOLE */
+.game-window{
+    position: relative;
+    width: 400px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: #282828;
+    flex-direction: column;
+    overflow: hidden;
+    display: none;
+}
+
+.game-stat-container{
+    position: relative;
+    width: 100%;
+    height: 100px;
+    /* background-color: #676f9d; */
+}
+
+.player-details{
+    width: 360px;
+    height: 60px;
+    border-radius: 4px;
+    background-color: #E8E8E8;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding:  0 12px;
+}
+
+.pl1{
+    width: 150px;
+    height: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.pl2{
+    width: 150px;
+    height: 100%;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+}
+
+.pl1-avatar, .pl2-avatar{
+    width: 40px;
+    height: 40px;
+    border: 1px solid #7f7f7f;
+    border-radius: 4px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #5e5e5e;
+}
+
+.pl1-avatar{
+    background-color: hsl(0, 96%, 80%);
+}
+
+.pl2-avatar{
+    background-color: rgb(176, 255, 176);
+}
+
+.pl-name{
+    font-size: 16px;
+    font-weight: 500;
+    color: #595959;
+}
+
+.score-container{
+    position: absolute;
+    min-width: 70px;
+    min-height: 70px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding: 14px;
+    top: 15px;
+    left: 165px;
+    background-color: #E8E8E8;
+    color: #484848;
+    justify-content: space-between;
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.212);
+}
+
+.score-container span{
+    font-size: 24px;
+    font-weight: 600;
+    display: block;
+}
+
+.game-matrix-container{
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.game-matrix{
+    position: relative;
+    display: grid;
+    width: 200px;
+    height: 200px;
+}
+
+.winner-popup{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    display: none;
+}
+
+.winner-container{
+    width: 200px;
+    height: 200px;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.trophy-container{
+    width: 80px;
+    height: 100px;
+    background-image: url("img/trophy.png");
+    background-size: contain;
+}
+
+.win-msg{
+    font-size: 24px;
+    font-weight: 500;
+    color: #5e5e5e;
+}
+
+.win-msg span{
+    color: #2d3250;
+    font-weight: 700;
+}
+
+/* HANDLE CONTENT ROUTING */
+.show{
+    display: flex;
+}

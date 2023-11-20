@@ -1,0 +1,68 @@
+.box{
+    width: 50px;
+    height: 50px;
+}
+
+.box p {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.point{
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid aqua;
+    background-color: black;
+    cursor: pointer;
+    transition: all 0.2s ;
+    z-index: 100;
+    
+}
+
+.point span{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: aqua;
+    transition: all 0.2s ;
+}
+
+.activated:hover{
+    border-color: rgb(30, 255, 0);
+}
+
+.activated:hover span{
+    background-color: rgb(30, 255, 0);
+}
+
+.line{
+    position: absolute;
+    background-color: aqua;
+    z-index: 50;
+}
+
+.prime{
+    border-color: rgb(30, 255, 0);
+}
+
+.prime span{
+    background-color: rgb(30, 255, 0);
+}
+
+.primepair{
+    border-color: rgb(255, 208, 0);
+}
+
+.primepair span{
+    background-color: rgb(255, 208, 0);
+}
+
+.deactivate{
+    border-color: rgb(46, 46, 46);
+}
+
+.deactivate span{
+    background-color: rgb(46, 46, 46);
+}

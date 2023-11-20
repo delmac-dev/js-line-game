@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trial lines</title>
+    <style>
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: content-box;
+        font-family: 'Poppins';
+        }
+
+        :root{
+            --background: #050505;
+            --sec-background: #1B1B1B;
+            --ter-background: #424769;
+            --her-background: #52577271;
+            --font-color: #ffffff;
+            --font-sec-color: #f3f3f3;
+            --foreground: #f18532;
+            --foreground-hover: #f16f0b;
+        }
+
+        .center{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh; /*or auto*/
+            background-color: var(--background);
+            flex-direction: column;
+            font-family: "Poppins";
+        }
+
+        .game-container{
+            width: 400px;
+            height: 400px;
+            box-shadow: 0 0 5px black;
+            background-color: var(--sec-background);
+        }
+
+        .matrix-ctrl{
+            width: 350px;
+            height: 100px;
+            background-color: var(--sec-background);
+            margin-top: 14px;
+            box-shadow: 0 0 5px black;
+        }
+
+        .game-matrix-container{
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 150px;
+            height: 100px;
+            transform: scale(1);
+        }
+
+        .box{
+            width: 50px;
+            height: 50px;
+            /* background-color: rgb(153, 93, 93); */
+        }
+
+        .box p {
+            font-size: 28px;
+            font-weight: 900;
+            color: gray;
+        }
+
+        .point{
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid aqua;
+            background-color: var(--sec-background);
+            cursor: pointer;
+            transition: all 0.2s ;
+            z-index: 100;
+            
+        }
+
+        .point span{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: aqua;
+            transition: all 0.2s ;
+        }
+
+        .activated:hover{
+            border-color: rgb(30, 255, 0);
+        }
+
+        .activated:hover span{
+            background-color: rgb(30, 255, 0);
+        }
+
+        .line{
+            position: absolute;
+            background-color: aqua;
+            z-index: 50;
+        }
+
+        .prime{
+            border-color: rgb(30, 255, 0);
+        }
+
+        .prime span{
+            background-color: rgb(30, 255, 0);
+        }
+
+        .primepair{
+            border-color: rgb(255, 208, 0);
+        }
+
+        .primepair span{
+            background-color: rgb(255, 208, 0);
+        }
+
+        .deactivate{
+            border-color: rgb(46, 46, 46);
+        }
+
+        .deactivate span{
+            background-color: rgb(46, 46, 46);
+        }
+    </style>
+</head>
+<body class="center">
+    <div class="game-container center">
+        <div class="game-matrix-container">
+
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+
+            <div class="point center" style="top: -9px;left: -9px;"><span></span></div>
+            <div class="point center" style="top: -9px;left: 41px;"><span></span></div>
+            <div class="point center" style="top: -9px;left: 91px;"><span></span></div>
+            <div class="point center" style="top: -9px;left: 141px;"><span></span></div>
+
+            <div class="point center" style="top: 41px;left: -9px;"><span></span></div>
+            <div class="point center" style="top: 41px;left: 41px;"><span></span></div>
+            <div class="point center" style="top: 41px;left: 91px;"><span></span></div>
+            <div class="point center" style="top: 41px;left: 141px;"><span></span></div>
+
+            <div class="point center" style="top: 91px;left: -9px;"><span></span></div>
+            <div class="point center" style="top: 91px;left: 41px;"><span></span></div>
+            <div class="point center" style="top: 91px;left: 91px;"><span></span></div>
+            <div class="point center" style="top: 91px;left: 141px;" onclick="selectPair()"><span></span></div>
+
+            <div class="line" style="top: -2px;left: 0px;width: 50px; height: 4px;"></div>
+            <div class="line" style="top: -2px;left: 50px;width: 50px; height: 4px;"></div>
+            <div class="line" style="top: -2px;left: 100px;width: 50px; height: 4px;"></div>
+            <div class="line" style="top: 48px;left: 0px;width: 50px; height: 4px;"></div>
+            <div class="line" style="top: 48px;left: 50px;width: 50px; height: 4px;"></div>
+            <div class="line" style="top: 48px;left: 100px;width: 50px; height: 4px;"></div>
+            <div class="line" style="top: 98px;left: 0px;width: 50px; height: 4px;"></div>
+            <div class="line" style="top: 98px;left: 50px;width: 50px; height: 4px;"></div>
+            <div class="line" style="top: 98px;left: 100px;width: 50px; height: 4px;"></div>
+
+            <div class="line" style="top: 0px;left: -2px;width: 4px; height: 50px;"></div>
+            <div class="line" style="top: 50px;left: -2px;width: 4px; height: 50px;"></div>
+            <div class="line" style="top: 0px;left: 48px;width: 4px; height: 50px;"></div>
+            <div class="line" style="top: 50px;left: 48px;width: 4px; height: 50px;"></div>
+            <div class="line" style="top: 0px;left: 98px;width: 4px; height: 50px;"></div>
+            <div class="line" style="top: 50px;left: 98px;width: 4px; height: 50px;"></div>
+            <div class="line" style="top: 0px;left: 148px;width: 4px; height: 50px;"></div>
+            <div class="line" style="top: 50px;left: 148px;width: 4px; height: 50px;"></div>
+
+        </div>
+    </div>
+    <div class="matrix-ctrl">
+
+    </div>
+
+
+    <script>
+        const   GAME_MATRIX = document.querySelector(".game-matrix-container"),
+                GAME_BOXES = document.querySelector(".box"),
+                GAME_LINES = document.querySelector(".line"),
+                GAME_POINT = document.querySelector("point");
+        
+        var playerList, totalPlayers, pointList, boxList, primePoint, primePair, pointColumn, pointRow, boxOccupied = 0;
+
+        pointColumn = 7;
+        pointRow = 7;
+        
+        //Create the matrix
+        var createMatrix = (row, column) => {
+            pointList = createPointList(row, column);
+            boxList = createBoxList(row - 1, column - 1);
+
+            console.log(GAME_MATRIX.style);
+            GAME_MATRIX.style.transform = "scale(.5)";
+            GAME_MATRIX.innerHTML = "";
+            GAME_MATRIX.style.width = `${(column - 1) * 50}px`;
+            GAME_MATRIX.style.height = `${(row - 1) * 50}px`;
+            GAME_MATRIX.style.gridTemplateColumns = `repeat(${(column - 1)}, 1fr)`;
+            GAME_MATRIX.style.gridTemplateRows = `repeat(${(row - 1)}, 1fr)`;
+
+            for(i = 1; i <= ((row - 1) * (column - 1)); i++) GAME_MATRIX.innerHTML += `<div class="box center" id = "box-${i}"></div>`;
+            for(i = 1; i <= row * column; i++) GAME_MATRIX.innerHTML += `<div class="point center activated" id = "point-${i}" style="top: ${pointList[i-1].top}px;left: ${pointList[i-1].left}px;" onclick = "selectPair(this)"><span></span></div>`;
+
+        }
+
+        var createPointList = (row, column) => {
+            let list=[];
+            let rowIndex = 0;
+            let columnIndex = 0;
+            let interval = 50;
+            for(i = 1; i <= (row*column); i++){
+                rowPosition = -9 + (interval * rowIndex);
+                columnPosition = -9 + (interval * columnIndex);
+
+                //the point dictionnary
+                let point = {};
+                point["id"] = i;
+                point["top"] = rowPosition;
+                point["left"] = columnPosition;
+                point["pair"] = [];
+                point["boxes"] = [];
+
+                // PairTop
+                rowIndex != 0 ? point.pair.push(i - column): '';
+                // PairBottom
+                rowIndex != row - 1 ? point.pair.push(i + column): '';
+                // PairLeft
+                columnIndex != 0 ? point.pair.push(i - 1): '';
+                // PairRight
+                columnIndex != column - 1 ? point.pair.push(i + 1): '';
+
+                // BoxTopLeft
+                rowIndex != 0 && columnIndex != 0 ? point.boxes.push(i - (column + rowIndex)) : '';
+                // BoxTopRight
+                rowIndex != 0 && columnIndex != column - 1 ? point.boxes.push((i - (column + rowIndex)) + 1) : '';
+                // BoxBottomleft
+                rowIndex != row - 1 && columnIndex != 0 ? point.boxes.push((i - (column + rowIndex)) + (column - 1)) : '';
+                // BoxBottomRight
+                rowIndex != row - 1 && columnIndex != column - 1 ? point.boxes.push(((i - (column + rowIndex)) + 1) + (column - 1)) : '';
+
+                columnIndex += 1;
+                if (i % column == 0){
+                    rowIndex += 1;
+                    columnIndex = 0;
+                }
+
+                list.push(point);
+            }
+
+            return list;
+        }
+
+        var createBoxList = (row, column) => {
+            let list = [];
+            for(i = 1; i <= row*column; i++){
+                box = {};
+                box["id"] = i;
+                box["count"] = 0;
+
+                list.push(box);
+            }
+            return list
+        }
+        
+        var selectPair = (target) => {
+            // console.log(target.id.match(/\d/g)); SAMPLE REGEX EXPRESSION TO RETURN LIST OF ELEMENT ID NUMBER
+            splitzID = target.id.split('-');
+            resetPoint();
+
+            primePoint = splitzID[1];
+            primePair = pointList[parseInt(splitzID[1])-1].pair;
+
+            target.classList.add("prime");
+
+            primePair.forEach(e => {
+                let selectedPair = document.getElementById(`point-${e}`)
+                selectedPair.classList.add("primepair");
+                selectedPair.setAttribute("onclick", "playGame(this)");
+            });
+        }
+
+        var playGame = (target) => {
+            let splitzID = target.id.split('-');
+            splitzID = Number(splitzID[1])
+
+            // Draw line from PrimePair to PlayerSelectedPair
+            Math.abs(primePoint - splitzID) === pointColumn ?
+                primePoint > splitzID ? drawLine(splitzID) : drawLine(primePoint) :
+                primePoint > splitzID ? drawLine(splitzID, false) : drawLine(primePoint, false)
+
+            // remove highlight from both selected points
+            resetPoint();
+            
+            // Remove splitzID from primepoint pair list
+            pointList[primePoint - 1].pair.splice(pointList[primePoint - 1].pair.indexOf(splitzID), 1);
+            pointList[primePoint - 1].pair.length === 0 ? deactivatePoint(primePoint) : '';
+
+            // Remove primepoint from splitzID pair list
+            pointList[splitzID - 1].pair.splice(pointList[splitzID - 1].pair.indexOf(Number(primePoint)), 1);
+            pointList[splitzID - 1].pair.length === 0 ? deactivatePoint(splitzID) : '';
+
+            // Add one to all affectedBox count number
+            let intersection = pointList[primePoint - 1].boxes.filter(e => pointList[splitzID - 1].boxes.includes(e));
+            intersection.forEach(e => {
+                boxList[Number(e) - 1].count += 1;
+                boxList[Number(e) - 1].count === 4 ? document.getElementById(`box-${e}`).innerHTML = `<p>P</p>` : '';
+                boxList[Number(e) - 1].count === 4 ? boxOccupied += 1 : '';
+                boxOccupied === (pointRow - 1) * (pointColumn - 1) ? console.log("gameover") : '';
+            });
+
+            // Check if boxes are 4 and give it content to the active player and increase score.
+
+            // switch user to play turn
+
+            //
+        };
+
+        var drawLine = (point, isVertical = true) => {
+            if (isVertical == true) {
+                let vLine = `<div class="line" style="top: ${(pointList[point - 1].top + 9)}px;left: ${(pointList[point - 1].left + 9) - 2}px;width: 4px; height: 50px;"></div>`
+                GAME_MATRIX.innerHTML += vLine
+            }else{
+                let hLine = `<div class="line" style="top: ${(pointList[point - 1].top + 9) - 2}px;left: ${(pointList[point - 1].left + 9)}px;width: 50px; height: 4px;"></div>`
+                GAME_MATRIX.innerHTML += hLine
+            }
+        }
+
+        var resetPoint = () => {
+            primePoint ? document.getElementById(`point-${primePoint}`).classList.remove("prime") : '';
+            primePair ? primePair.forEach(e => {
+                document.getElementById(`point-${e}`).classList.remove("primepair");
+                document.getElementById(`point-${e}`).setAttribute("onclick", "selectPair(this)");
+            }): '';
+        }
+        
+        var deactivatePoint = (point) => {
+            // add deactivate class and remove onclick attribute
+            document.getElementById(`point-${point}`).classList.remove("activated");
+            // document.getElementById(`point-${point}`).classList.add("deactivate");
+            document.getElementById(`point-${point}`).removeAttribute("onclick");
+        }
+
+        createMatrix(pointRow, pointColumn);
+    </script>
+
+
+</body>
+</html>
