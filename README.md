@@ -1,6 +1,6 @@
-# js-line-game
+# Dot Connect Game
 
-this is a logic game made with vanilla js , html and css
+Description: Dot Connect Challenge is an engaging and strategic two-player game where participants take turns connecting two dots on a grid with a line. The objective is to create a continuous path between the dots, attempting to form a square. Players must think strategically to outmaneuver their opponent and prevent them from completing a square. The game requires a combination of foresight and tactical planning, as each move influences the board's layout and potential future moves. With a simple yet addictive gameplay concept, Dot Connect Challenge offers a fun and competitive experience for players of all ages. Can you outsmart your opponent and master the art of connecting the dots?
 
 ## Screenshots
 
