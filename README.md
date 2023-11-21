@@ -4,5 +4,5 @@ this is a logic game made with vanilla js , html and css
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![start](https://github.com/delmac-dev/js-line-game/assets/136045782/14fff3ac-2b2e-49d7-8df4-57ad1656b93e)
 
